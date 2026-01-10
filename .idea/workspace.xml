@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="unapp-server delete">
-      <change beforePath="$PROJECT_DIR$/unapp-server" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/Region.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/regions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/rosstat-parser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/database.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/controllers/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/controllers/upload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/upload.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/models/ExcelRow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/ExcelRow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/models/ExcelSheet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/ExcelSheet.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/routes/data.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/data.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/routes/upload.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/upload.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/excel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vv/utils/excel.parser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/utils/excel.parser.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +31,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "VictoriaGaunt"
+  }
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/VictoriaGaunt/unApp.git",
@@ -50,6 +72,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD\server" />
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -64,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1768030723084</updated>
-      <workItem from="1768030725069" duration="1390000" />
+      <workItem from="1768030725069" duration="3085000" />
     </task>
     <task id="LOCAL-00001" summary="unapp-server delete">
       <option name="closed" value="true" />
@@ -74,7 +102,23 @@
       <option name="project" value="LOCAL" />
       <updated>1768031639442</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="unapp-server delete">
+      <option name="closed" value="true" />
+      <created>1768032135187</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768032135187</updated>
+    </task>
+    <task id="LOCAL-00003" summary="unapp-server delete">
+      <option name="closed" value="true" />
+      <created>1768032308627</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768032308627</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
