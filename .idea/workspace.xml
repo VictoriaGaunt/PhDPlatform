@@ -4,9 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="refactoring tsconfig">
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.lintstagedrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vite.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/nodemon.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/config/database.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/upload.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/data/mock-regions.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/ExcelRow.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/ExcelSheet.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/data.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/upload.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/excel.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/excel.parser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/test-connection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768030723084</updated>
       <workItem from="1768030725069" duration="6860000" />
-      <workItem from="1768043071416" duration="370000" />
+      <workItem from="1768043071416" duration="670000" />
     </task>
     <task id="LOCAL-00001" summary="unapp-server delete">
       <option name="closed" value="true" />
@@ -127,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768038325618</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refactoring tsconfig">
+      <option name="closed" value="true" />
+      <created>1768043519954</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1768043519954</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +187,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="unapp-server delete" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="refactoring tsconfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring tsconfig" />
   </component>
 </project>
