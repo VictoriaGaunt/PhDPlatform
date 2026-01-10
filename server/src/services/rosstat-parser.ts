@@ -39,7 +39,7 @@ export class RosstatParser {
     private async fetchHtml(url: string): Promise<string> {
         const response = await axios.get(url, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (compatible; unApp/1.0)'
+                'User-Agent': 'Mozilla/5.0 (compatible; PhD/1.0)'
             },
             timeout: 30000
         })
