@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6
+    container_name: unapp-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  api:
+    build: ./server
+    container_name: unapp-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://admin:${MONGO_ROOT_PASSWORD}@mongodb:27017/unapp?authSource=admin
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
