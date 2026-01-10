@@ -1,19 +1,10 @@
 {
-  "name": "",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "server",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon",
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "docker:build": "docker build -t excel-dashboard-server .",
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

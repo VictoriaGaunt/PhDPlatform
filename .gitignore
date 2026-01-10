@@ -1,0 +1,24 @@
+# Общие
+node_modules/
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.tar
+*.gz
+
+# Environment
+.env
+.env.local
+.env.*.local

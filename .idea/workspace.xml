@@ -4,24 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="unapp-server delete">
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/nginx.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/config/database.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/upload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/upload.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/data/mock-regions.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/data/mock-regions.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/ExcelRow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/ExcelRow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/ExcelSheet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/ExcelSheet.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/Region.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/regions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/api.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/rosstat-parser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/controllers/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/controllers/upload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/upload.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/models/ExcelRow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/ExcelRow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/models/ExcelSheet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/ExcelSheet.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/routes/data.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/data.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/routes/upload.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/upload.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/excel.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/vv/utils/excel.parser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/utils/excel.parser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/data.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/data.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/upload.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/upload.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/excel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/utils/excel.parser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/excel.parser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +52,9 @@
   "associatedIndex": 2
 }]]></component>
   <component name="ProjectId" id="383aUJHhCivJvOU54Q5j9dkOiwb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -74,6 +82,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD\server\src" />
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD\client" />
       <recent name="C:\Users\vikaa\WebstormProjects\PhD\server" />
       <recent name="C:\Users\vikaa\WebstormProjects\PhD" />
     </key>
@@ -92,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1768030723084</updated>
-      <workItem from="1768030725069" duration="3085000" />
+      <workItem from="1768030725069" duration="5878000" />
     </task>
     <task id="LOCAL-00001" summary="unapp-server delete">
       <option name="closed" value="true" />
@@ -118,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768032308627</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1768033879075</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1768033879075</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +144,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="unapp-server delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="unapp-server delete" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
 </project>
