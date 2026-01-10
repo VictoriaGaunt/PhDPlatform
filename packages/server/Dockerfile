@@ -1,22 +1,43 @@
-FROM node:18-alpine
+# ==================== BUILD STAGE ====================
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Установка зависимостей
+# Копируем файлы зависимостей
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm ci --include=dev
+
+# Копируем исходный код
+COPY . .
+
+# Собираем TypeScript
+RUN npm run build
+
+# ==================== PRODUCTION STAGE ====================
+FROM node:18-alpine AS production
+
+WORKDIR /app
+
+# Устанавливаем только production зависимости
 COPY package*.json ./
 RUN npm ci --only=production
 
-# Копирование исходного кода
-COPY . .
+# Копируем собранный код из builder stage
+COPY --from=builder /app/dist ./dist
 
-# Сборка TypeScript
-RUN npm run build
+# Создаем необходимые директории
+RUN mkdir -p uploads logs
 
-# Создание папок
-RUN mkdir -p uploads
+# Устанавливаем права
+RUN chown -R node:node /app
 
-# Открытие порта
-EXPOSE 5000
+# Переключаемся на непривилегированного пользователя
+USER node
 
-# Запуск приложения
-CMD ["npm", "start"]
+# Открываем порт
+EXPOSE ${PORT:-3000}
+
+# Запускаем приложение
+CMD ["node", "dist/index.js"]
