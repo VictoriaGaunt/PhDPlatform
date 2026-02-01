@@ -4,41 +4,124 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="refactoring tsconfig">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.lintstagedrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nginx.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.node.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/vite.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+    <list default="true" id="71982469-efd8-41e1-b579-5d18b3a2884c" name="Changes" comment="refactoring package-lock and env">
+      <change afterPath="$PROJECT_DIR$/packages/client/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/android-chrome-192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/android-chrome-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/client/public/site.webmanifest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/docker/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/app.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/config/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/config/environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/config/logger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/config/swagger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/auth.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/dashboard.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/export.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/prediction.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/region.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/controllers/user.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/jobs/cacheCleanup.job.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/jobs/dataSync.job.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/auth.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/error.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/logger.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/rateLimit.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/role.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/middleware/validation.middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/AuditLog.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/Dataset.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/Indicator.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/Prediction.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/Region.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/models/User.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/auth.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/export.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/prediction.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/region.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/routes/user.routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/schemas/auth.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/schemas/prediction.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/schemas/region.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/scripts/backupDatabase.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/scripts/migrateData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/scripts/seedDatabase.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/cache.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/data.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/export.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/models/gradientBoosting.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/models/regression.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/models/timeSeries.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/prediction.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/processors/dataNormalizer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/processors/featureExtractor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/region.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/services/validation.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/types/api.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/types/express.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/types/models.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/apiFeatures.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/errorHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/excel.generator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/jwt.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/math.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/server/src/utils/validators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.lintstagedrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/nodemon.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/config/database.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/data.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/upload.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/data/mock-regions.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/ExcelRow.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/ExcelSheet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/data.routes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/upload.routes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/excel.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/utils/excel.parser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test-connection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/app.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/nodemon.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/server/nodemon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/server/src/config/database.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/controllers/data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/controllers/upload.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/data/mock-regions.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/models/ExcelRow.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/models/ExcelSheet.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/routes/data.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/routes/upload.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/services/excel.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/src/utils/excel.parser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/test-connection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/server/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/server/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site.webmanifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.base.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +137,12 @@
     &quot;assignee&quot;: &quot;VictoriaGaunt&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/VictoriaGaunt/PhD.git",
-    "accountId": "cf16c303-ecaa-46b8-b276-6c7585be8bc5"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VictoriaGaunt/PhD.git&quot;,
+    &quot;accountId&quot;: &quot;cf16c303-ecaa-46b8-b276-6c7585be8bc5&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -71,41 +154,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.preferred.runtime.type.id": "node",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 261.17801.57\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD\packages\server\src\services" />
+      <recent name="C:\Users\vikaa\WebstormProjects\PhD\packages\client" />
       <recent name="C:\Users\vikaa\WebstormProjects\PhD\server\src" />
       <recent name="C:\Users\vikaa\WebstormProjects\PhD\client" />
       <recent name="C:\Users\vikaa\WebstormProjects\PhD\server" />
-      <recent name="C:\Users\vikaa\WebstormProjects\PhD" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.242" />
+        <option value="bundled-js-predefined-d6986cc7102b-8fceda3e36b7-JavaScript-WS-261.17801.57" />
       </set>
     </attachedChunks>
   </component>
@@ -118,6 +202,7 @@
       <updated>1768030723084</updated>
       <workItem from="1768030725069" duration="6860000" />
       <workItem from="1768043071416" duration="670000" />
+      <workItem from="1769925128821" duration="935000" />
     </task>
     <task id="LOCAL-00001" summary="unapp-server delete">
       <option name="closed" value="true" />

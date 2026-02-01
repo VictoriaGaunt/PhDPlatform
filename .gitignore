@@ -1,58 +1,172 @@
-# ========== СЕКРЕТЫ И КОНФИДЕНЦИАЛЬНОСТЬ ==========
-# НИКОГДА не коммитьте файлы с паролями!
-.env
-.env.local
-.env.*.local
-.env.production
-.env.development
-!.env.example
+# ============================================
+# PhD RESEARCH PLATFORM - .gitignore
+# ============================================
 
-# Файлы с паролями MongoDB
-*connection*.js
-*password*.js
-*secret*.js
+# ============ ОПЕРАЦИОННЫЕ СИСТЕМЫ =========
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# ========== NODE.JS ==========
+# ============ ИДЕ и РЕДАКТОРЫ =============
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ============ NODE.JS =====================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.pnpm-store/
 
-# ========== СБОРКА ==========
+# ============ КОМПИЛИРОВАННЫЕ ФАЙЛЫ =======
 dist/
 build/
 out/
-.next/
-.nuxt/
+*.tsbuildinfo
 
-# ========== IDE ==========
-.vscode/
-.idea/
-*.swp
-*.swo
-*.code-workspace
+# ============ ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ ========
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging.local
+.env.example
+!.env.example
 
-# ========== ОС ==========
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# ========== DOCKER ==========
-*.tar
-*.gz
+# ============ DOCKER ======================
 docker-compose.override.yml
+.dockerignore
 
-# ========== ЗАГРУЗКИ ==========
-uploads/
-tmp/
+# ============ БАЗЫ ДАННЫХ =================
+*.db
+*.sqlite
+*.sqlite3
+mongodata/
+redisdata/
+
+# ============ ЗАГРУЖАЕМЫЕ ФАЙЛЫ ==========
+uploads/*
+!uploads/.gitkeep
 temp/
+tmp/
 
-# ========== ЛОГИ ==========
-logs/
+# ============ ЛОГИ =======================
 *.log
+logs/*
+!logs/.gitkeep
 
-# ========== ПАКЕТЫ КЛИЕНТА И СЕРВЕРА ==========
-packages/client/.env
-packages/server/.env
-packages/*/node_modules/
+# ============ ТЕСТЫ ======================
+coverage/
+.nyc_output
+*.lcov
+
+# ============ ДОКУМЕНТАЦИЯ ===============
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# ============ ВРЕМЕННЫЕ ФАЙЛЫ ============
+*.tmp
+*.temp
+.cache/
+
+# ============ ЗАВИСИМОСТИ ================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============ SSL/СЕРТИФИКАТЫ ============
+*.pem
+*.key
+*.crt
+*.csr
+ssl/
+
+# ============ МОДЕЛИ ML ==================
+models/*.model
+models/*.h5
+models/*.pkl
+models/*.joblib
+!models/README.md
+
+# ============ ФРОНТЕНД ===================
+# Vue/TypeScript сборка
+packages/client/dist/
+packages/client/.vite/
+packages/client/.storybook/
+packages/client/cypress/videos/
+packages/client/cypress/screenshots/
+
+# ============ БЭКЕНД =====================
+packages/server/dist/
+packages/server/.nyc_output
+packages/server/coverage/
+
+# ============ РАЗНОЕ =====================
+*.seed
+*.backup
+dump.rdb
+*.pid
+*.pid.lock
+
+# ============ ИСКЛЮЧЕНИЯ =================
+!packages/client/public/
+!packages/server/public/
+!packages/shared/
+!data/sample/
+!docs/api/
+!infrastructure/examples/
+
+# ============ СИСТЕМНЫЕ ФАЙЛЫ ===========
+system.log
+error.log
+
+# ============ КОНФИГУРАЦИЯ IDE ===========
+.project
+.classpath
+.settings/
+.factorypath
+
+# ============ ВЕБ-ПАКЕТЫ =================
+.webpack/
+.webpack-cache/
+
+# ============ PWA ========================
+web-manifest.json
+service-worker.js
+sw.js
+
+# ============ ЭКСПОРТЫ ===================
+exported_data/
+!exported_data/.gitkeep
+
+# ============ РЕЗЕРВНЫЕ КОПИИ ===========
+*.bak
+*.backup
+*.old
+
+# ============ ТОКЕНЫ КАРТ ================
+mapbox-token.txt
+*.token
+*.secret
+
+# ============ ДОКУМЕНТАЦИЯ PDF ===========
+*.pdf
+!documentation/README.pdf
+
+# ==========================================
+# КОНЕЦ .gitignore
+# ==========================================

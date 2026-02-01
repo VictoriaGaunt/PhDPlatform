@@ -1,88 +1,112 @@
 version: '3.8'
 
-x-common-env: &common-env
-  NODE_ENV: ${NODE_ENV:-production}
-  TZ: UTC
-
 services:
-  # MongoDB база данных
+  # MongoDB (локальный для разработки)
   mongodb:
-    image: mongo:7
+    image: mongo:6.0
     container_name: phd-mongodb
     restart: unless-stopped
     ports:
-      - "${MONGODB_PORT:-27017}:27017"
+      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-admin}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGODB_DATABASE:-phd_database}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-DBDashboard}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-m8oIdPDW321hBCPD}
     volumes:
       - mongodb_data:/data/db
-      - ./docker/mongodb/init.js:/docker-entrypoint-initdb.d/init.js:ro
+      - ./data/mongodb/init:/docker-entrypoint-initdb.d:ro
     networks:
       - phd-network
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    command: mongod --quiet --logpath /dev/null
 
-  # Backend сервер (Node.js + Express)
+  # Redis для кэширования
+  redis:
+    image: redis:7.2-alpine
+    container_name: phd-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - phd-network
+    command: redis-server --appendonly yes
+
+  # Бэкенд сервер
   server:
     build:
       context: ./packages/server
-      dockerfile: Dockerfile
-      target: ${NODE_ENV:-production}
+      dockerfile: Dockerfile.dev
     container_name: phd-server
     restart: unless-stopped
-    environment:
-      <<: *common-env
-      PORT: ${SERVER_PORT:-3000}
-      MONGODB_URI: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017/${MONGODB_DATABASE}?authSource=admin
-      UPLOAD_DIR: /app/uploads
     ports:
-      - "${SERVER_PORT:-3000}:${SERVER_PORT:-3000}"
-    volumes:
-      - ./packages/server/uploads:/app/uploads
-      - ./packages/server/logs:/app/logs
+      - "5000:5000"
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 5000
+      # Используем локальный MongoDB в Docker
+      MONGODB_URI: ${MONGODB_URI:-mongodb://${MONGO_USERNAME:-DBDashboard}:${MONGO_PASSWORD:-m8oIdPDW321hBCPD}@mongodb:27017/phd-platform?authSource=admin}
+      # Или MongoDB Atlas (закомментировать строку выше и раскомментировать ниже)
+      # MONGODB_URI: ${MONGODB_URI_ATLAS:-mongodb+srv://DBDashboard:m8oIdPDW321hBCPD@phddashboard.eb5fpdm.mongodb.net/phd-platform?retryWrites=true&w=majority}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-key-change-in-production}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev-refresh-secret-key}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
     depends_on:
-      mongodb:
-        condition: service_healthy
+      - mongodb
+      - redis
+    volumes:
+      - ./packages/server:/app
+      - /app/node_modules
+      - ./logs:/app/logs
     networks:
       - phd-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${SERVER_PORT:-3000}/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+    command: npm run dev
 
-  # Frontend клиент (Vue.js)
+  # Фронтенд клиент
   client:
     build:
       context: ./packages/client
-      dockerfile: Dockerfile
-      target: ${NODE_ENV:-production}
+      dockerfile: Dockerfile.dev
     container_name: phd-client
     restart: unless-stopped
-    environment:
-      <<: *common-env
-      VITE_API_URL: http://localhost:${SERVER_PORT:-3000}/api
     ports:
-      - "${CLIENT_PORT:-8080}:80"
+      - "3000:3000"
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:5000/api/v1}
     depends_on:
       - server
+    volumes:
+      - ./packages/client:/app
+      - /app/node_modules
     networks:
       - phd-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+    command: npm run dev
 
-networks:
-  phd-network:
-    driver: bridge
+  # Mongo Express (веб-интерфейс для MongoDB) - опционально
+  mongo-express:
+    image: mongo-express:latest
+    container_name: phd-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME:-DBDashboard}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD:-m8oIdPDW321hBCPD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USERNAME:-DBDashboard}:${MONGO_PASSWORD:-m8oIdPDW321hBCPD}@mongodb:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin123
+    depends_on:
+      - mongodb
+    networks:
+      - phd-network
 
 volumes:
   mongodb_data:
     driver: local
+  redis_data:
+    driver: local
+
+networks:
+  phd-network:
+    driver: bridge

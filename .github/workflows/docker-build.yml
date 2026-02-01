@@ -1,0 +1,25 @@
+name: Deploy Full Stack
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy-server:
+    uses: ./.github/workflows/deploy-server.yml
+
+  deploy-client:
+    uses: ./.github/workflows/deploy-client.yml
+
+  notify-complete:
+    needs: [deploy-server, deploy-client]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Notify complete
+        run: |
+          echo "Deployment complete!"
+          echo "Server: ${{ needs.deploy-server.result }}"
+          echo "Client: ${{ needs.deploy-client.result }}"
