@@ -9,8 +9,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-DBDashboard}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-m8oIdPDW321hBCPD}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - mongodb_data:/data/db
       - ./data/mongodb/init:/docker-entrypoint-initdb.d:ro
@@ -43,13 +43,10 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV:-development}
       PORT: 5000
-      # Используем локальный MongoDB в Docker
-      MONGODB_URI: ${MONGODB_URI:-mongodb://${MONGO_USERNAME:-DBDashboard}:${MONGO_PASSWORD:-m8oIdPDW321hBCPD}@mongodb:27017/phd-platform?authSource=admin}
-      # Или MongoDB Atlas (закомментировать строку выше и раскомментировать ниже)
-      # MONGODB_URI: ${MONGODB_URI_ATLAS:-mongodb+srv://DBDashboard:m8oIdPDW321hBCPD@phddashboard.eb5fpdm.mongodb.net/phd-platform?retryWrites=true&w=majority}
+      MONGODB_URI: ${MONGODB_URI:-mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/phd-platform?authSource=admin}
       REDIS_URL: redis://redis:6379
-      JWT_SECRET: ${JWT_SECRET:-dev-secret-key-change-in-production}
-      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev-refresh-secret-key}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
     depends_on:
       - mongodb
@@ -91,9 +88,9 @@ services:
     ports:
       - "8081:8081"
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME:-DBDashboard}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD:-m8oIdPDW321hBCPD}
-      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USERNAME:-DBDashboard}:${MONGO_PASSWORD:-m8oIdPDW321hBCPD}@mongodb:27017/
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin123
     depends_on:
