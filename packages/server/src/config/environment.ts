@@ -11,9 +11,9 @@ const environment = {
     MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/phd-platform',
 
     // JWT
-    JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+    JWT_SECRET: process.env.JWT_SECRET || 'dev-secret',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
-    JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'your-refresh-secret',
+    JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret',
     JWT_REFRESH_EXPIRES_IN: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
 
     // CORS
@@ -30,6 +30,9 @@ const environment = {
     // File upload
     MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760'),
     UPLOAD_PATH: process.env.UPLOAD_PATH || 'uploads',
+    PYTHON_MODEL_URL: process.env.PYTHON_MODEL_URL || 'http://localhost:8000',
+    ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
 };
 
 export default environment;
