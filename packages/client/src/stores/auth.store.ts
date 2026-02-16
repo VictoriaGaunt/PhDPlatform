@@ -1,3 +1,5 @@
+// packages/client/src/stores/auth.store.ts
+
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { AuthApi } from '@/api/auth.api';
@@ -54,7 +56,6 @@ export const useAuthStore = defineStore('auth', () => {
     const login = async (credentials: LoginRequest) => {
         isLoading.value = true;
         error.value = null;
-
         try {
             const response = await AuthApi.login(credentials);
             setAuthData(response);
@@ -71,7 +72,6 @@ export const useAuthStore = defineStore('auth', () => {
     const register = async (userData: RegisterRequest) => {
         isLoading.value = true;
         error.value = null;
-
         try {
             const response = await AuthApi.register(userData);
             setAuthData(response);
@@ -87,7 +87,6 @@ export const useAuthStore = defineStore('auth', () => {
 
     const logout = async () => {
         isLoading.value = true;
-
         try {
             if (accessToken.value) {
                 await AuthApi.logout();
@@ -101,11 +100,11 @@ export const useAuthStore = defineStore('auth', () => {
         }
     };
 
-    const refreshToken = async () => {
+    // Переименовано, чтобы избежать конфликта с refreshToken (ref)
+    const refreshAccessToken = async () => {
         if (!refreshToken.value) {
             throw new Error('No refresh token available');
         }
-
         try {
             const response = await AuthApi.refreshToken(refreshToken.value);
             setAuthData(response);
@@ -148,7 +147,7 @@ export const useAuthStore = defineStore('auth', () => {
         login,
         register,
         logout,
-        refreshToken,
+        refreshAccessToken,   // обратите внимание – новое имя
         updateProfile,
         clearAuthData
     };

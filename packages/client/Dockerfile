@@ -1,16 +1,12 @@
-FROM node:18-alpine
-
+FROM node:18-alpine AS builder
 WORKDIR /app
-
-# Установка зависимостей
 COPY package*.json ./
-RUN npm install
-
-# Копирование исходного кода
+RUN npm ci
 COPY . .
+RUN npm run build
 
-# Открытие порта
-EXPOSE 3000
-
-# Запуск в режиме разработки
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -3,12 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-import * as dotenv from 'dotenv';
 
-// Загружаем переменные окружения
-dotenv.config();
-
-// Интерфейсы
 interface Region {
     code: string;
     name: string;
@@ -31,12 +26,10 @@ interface ApiResponse<T = any> {
     };
 }
 
-// Создаем приложение Express
 const app = express();
 const PORT = parseInt(process.env.PORT || '5000');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Middleware
 app.use(cors({
     origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
     credentials: true
@@ -46,7 +39,6 @@ app.use(morgan(NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Подключение к MongoDB
 const connectDB = async (): Promise<void> => {
     try {
         const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/phd-platform';

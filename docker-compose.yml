@@ -1,7 +1,5 @@
 version: '3.8'
-
 services:
-  # MongoDB (локальный для разработки)
   mongodb:
     image: mongo:6.0
     container_name: phd-mongodb
@@ -17,7 +15,6 @@ services:
     networks:
       - phd-network
     command: mongod --quiet --logpath /dev/null
-
   # Redis для кэширования
   redis:
     image: redis:7.2-alpine
@@ -30,27 +27,27 @@ services:
     networks:
       - phd-network
     command: redis-server --appendonly yes
-
   # Бэкенд сервер
   server:
     build:
       context: ./packages/server
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: phd-server
     restart: unless-stopped
     ports:
       - "5000:5000"
     environment:
-      NODE_ENV: ${NODE_ENV:-development}
-      PORT: 5000
-      MONGODB_URI: ${MONGODB_URI:-mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/phd-platform?authSource=admin}
+      NODE_ENV: development
+      MONGODB_URI: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/phd-platform?authSource=admin
       REDIS_URL: redis://redis:6379
+      PYTHON_MODEL_URL: http://python-model:8000
       JWT_SECRET: ${JWT_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
     depends_on:
       - mongodb
       - redis
+      - python-model
     volumes:
       - ./packages/server:/app
       - /app/node_modules
@@ -58,14 +55,25 @@ services:
     networks:
       - phd-network
     command: npm run dev
-
+  python-model:
+    build: ./packages/python-model
+    container_name: phd-python-model
+    environment:
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/phd-platform?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - phd-network
   # Фронтенд клиент
   client:
     build:
       context: ./packages/client
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: phd-client
-    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:

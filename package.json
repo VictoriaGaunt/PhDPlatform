@@ -1,33 +1,31 @@
 {
   "name": "phd-research-platform",
   "version": "1.0.0",
-  "description": "PhD Research Platform: Веб-приложение с интерактивной панелью, моделирующей динамику региональных данных по экосистеме воспроизводства человеческого капитала",
-  "author": "Виктория Гонт",
+  "description": "PhD Research Platform",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "install:all": "npm run install:server & npm run install:client",
-    "install:server": "cd packages/server && npm install",
-    "install:client": "cd packages/client && npm install",
-    "dev": "npm run dev:server & npm run dev:client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "cd packages/server && npm run dev",
     "dev:client": "cd packages/client && npm run dev",
-    "build": "npm ci --include=dev && npm run build:server & npm run build:client",
+    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:server": "cd packages/server && npm run build",
     "build:client": "cd packages/client && npm run build",
-    "start": "npm run start:server & npm run start:client",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:server": "cd packages/server && npm run start",
     "start:client": "cd packages/client && npm run preview",
     "docker:up": "docker-compose up -d",
     "docker:up:build": "docker-compose up -d --build",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
-    "clean": "rmdir /s /q node_modules packages\\server\\node_modules packages\\client\\node_modules",
-    "clean:install": "npm run clean && npm install"
+    "clean": "rimraf node_modules packages/server/node_modules packages/client/node_modules",
+    "install:all": "npm install && cd packages/server && npm install && cd ../client && npm install"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.5"
+  },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=18.0.0"
   }
 }

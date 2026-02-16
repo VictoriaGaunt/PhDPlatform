@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
 import morgan from 'morgan';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
@@ -12,8 +11,6 @@ import { loggerMiddleware } from './middleware/logger.middleware';
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
 app.use(cors({
     origin: environment.CORS_ORIGIN,
     credentials: true
