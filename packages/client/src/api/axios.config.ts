@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/stores/auth.store';
-import { router } from '@/router';
+import  router  from '@/router';
 
 class ApiClient {
     private instance: AxiosInstance;

@@ -1,5 +1,3 @@
-// packages/client/src/stores/auth.store.ts
-
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { AuthApi } from '@/api/auth.api';
