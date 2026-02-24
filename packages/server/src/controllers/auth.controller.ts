@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import environment from '../config/environment';
-import { UserService } from '../services/user.service';
+//import { UserService } from '../services/user.service';
 
 export class AuthController {
     static async login(req: Request, res: Response) {

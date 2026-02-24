@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
-import { Region } from '../models/Region.model';
+//import { Region } from '../models/Region.model';
 
 export class RegionController {
     static async getAll(req: Request, res: Response) {

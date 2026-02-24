@@ -22,6 +22,6 @@ const RegionSchema = new Schema<IRegion>({
     geometry: { type: Schema.Types.Mixed }, // GeoJSON
     metadata: { type: Schema.Types.Mixed },
     updatedAt: { type: Date, default: Date.now },
-});
+}, { timestamps: true });
 
 export const Region = mongoose.model<IRegion>('Region', RegionSchema);

@@ -11,7 +11,7 @@ export class UserController {
             data: {
                 id: req.user.id,
                 role: req.user.role,
-                username: process.env.ADMIN_USERNAME, // или получить из БД
+                username: process.env.ADMIN_USERNAME,
             },
         });
     }

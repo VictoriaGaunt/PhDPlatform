@@ -58,4 +58,8 @@ export class RegionService {
         console.error('Error updating region:', error);
         throw error;
     }
+
+    static async count(filter = {}) {
+        return Region.countDocuments(filter);
+    }
 }
