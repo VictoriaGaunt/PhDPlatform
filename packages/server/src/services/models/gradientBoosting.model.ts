@@ -1,64 +1,124 @@
-/**
- * Модель градиентного бустинга (заглушка для интеграции с Python)
- */
+interface Stump {
+    featureIndex: number;
+    threshold: number;
+    leftValue: number;
+    rightValue: number;
+}
 
 export class GradientBoostingModel {
-    private model: any;
     private featureNames: string[];
+    private stumps: Stump[] = [];
+    private learningRate: number;
+    private nEstimators: number;
+    private bias = 0;
 
-    constructor(featureNames?: string[]) {
+    constructor(featureNames?: string[], learningRate = 0.1, nEstimators = 40) {
         this.featureNames = featureNames || ['education', 'health', 'economy', 'social'];
-        // Инициализация модели (позже будет подключение к Python)
-        this.model = null;
-        console.log('GradientBoostingModel создан с признаками:', this.featureNames);
+        this.learningRate = learningRate;
+        this.nEstimators = nEstimators;
     }
 
-    /**
-     * Обучение модели
-     */
-    async train(_X: number[][], _y: number[]): Promise<void> {
-        // Здесь будет вызов Python-сервиса
-        console.log('Обучение модели...');
-        // Сохраняем что-то в this.model
-        this.model = { trained: true };
+    async train(X: number[][], y: number[]): Promise<void> {
+        if (!X.length || !y.length || X.length !== y.length) {
+            throw new Error('Некорректные данные для обучения');
+        }
+        this.stumps = [];
+        this.bias = y.reduce((sum, value) => sum + value, 0) / y.length;
+
+        const currentPredictions = Array.from({length: y.length}, () => this.bias);
+        for (let i = 0; i < this.nEstimators; i++) {
+            const residuals = y.map((target, index) => target - currentPredictions[index]);
+            const stump = this.fitBestStump(X, residuals);
+            this.stumps.push(stump);
+            for (let row = 0; row < X.length; row++) {
+                const update = X[row][stump.featureIndex] <= stump.threshold ? stump.leftValue : stump.rightValue;
+                currentPredictions[row] += this.learningRate * update;
+            }
+        }
     }
 
-    /**
-     * Прогнозирование
-     */
-    async predict(X: number[][]): Promise<number[]> {
-        if (!this.model) {
+        async predict(X: number[][]): Promise<number[]> {
+            if (!this.stumps.length) {
             throw new Error('Модель не обучена');
         }
-        // Заглушка: возвращаем средние значения
-        return X.map(() => 0.7 + Math.random() * 0.2);
-    }
+            return X.map((row) => {
+                let prediction = this.bias;
+                for (const stump of this.stumps) {
+                    prediction += this.learningRate * (row[stump.featureIndex] <= stump.threshold ? stump.leftValue : stump.rightValue);
+                }
+                return Math.min(1, Math.max(0, prediction));
+            });
+        }
 
-    /**
-     * Получить важность признаков
-     */
     getFeatureImportance(): Record<string, number> {
-        // Заглушка
-        const importance: Record<string, number> = {};
-        this.featureNames.forEach((name, idx) => {
-            importance[name] = 0.25 - idx * 0.05; // Пример
-        });
-        return importance;
+        if (!this.stumps.length) {
+            return Object.fromEntries(this.featureNames.map((name) => [name, 0]));
+        }
+        const weights = new Array(this.featureNames.length).fill(0);
+        for (const stump of this.stumps) {
+            weights[stump.featureIndex] += Math.abs(stump.leftValue - stump.rightValue);
+        }
+        const total = weights.reduce((sum, value) => sum + value, 0) || 1;
+        return Object.fromEntries(this.featureNames.map((name, index) => [name, weights[index] / total]));
     }
 
-    /**
-     * Сохранить модель
-     */
-    async saveModel(path: string): Promise<void> {
-        // Сохранение состояния модели
-        console.log(`Модель сохранена в ${path}`);
+    async saveModel(_path: string): Promise<void> {
+        // В текущей версии состояние хранится в памяти процесса.
     }
 
-    /**
-     * Загрузить модель
-     */
-    async loadModel(path: string): Promise<void> {
-        console.log(`Модель загружена из ${path}`);
-        this.model = { loaded: true };
+    async loadModel(_path: string): Promise<void> {
+        // Для локальной in-memory версии загрузка из файла пока не требуется.
+    }
+
+    private fitBestStump(X: number[][], residuals: number[]): Stump {
+        let bestStump: Stump = {
+            featureIndex: 0,
+            threshold: 0,
+            leftValue: 0,
+            rightValue: 0
+        };
+        let bestLoss = Number.POSITIVE_INFINITY;
+
+        const featureCount = X[0]?.length || 0;
+        for (let featureIndex = 0; featureIndex < featureCount; featureIndex++) {
+            const values = X.map((row) => row[featureIndex]);
+            const uniqueValues = [...new Set(values)].sort((a, b) => a - b);
+            if (!uniqueValues.length) continue;
+            for (const threshold of uniqueValues) {
+                const leftIndices: number[] = [];
+                const rightIndices: number[] = [];
+                values.forEach((value, rowIndex) => {
+                    if (value <= threshold) leftIndices.push(rowIndex);
+                    else rightIndices.push(rowIndex);
+                });
+                if (!leftIndices.length || !rightIndices.length) continue;
+                const leftValue = this.meanByIndex(residuals, leftIndices);
+                const rightValue = this.meanByIndex(residuals, rightIndices);
+                const loss = this.computeStumpLoss(residuals, values, threshold, leftValue, rightValue);
+                if (loss < bestLoss) {
+                    bestLoss = loss;
+                    bestStump = { featureIndex, threshold, leftValue, rightValue };
+                }
+            }
+        }
+        return bestStump;
+    }
+
+    private meanByIndex(values: number[], indices: number[]): number {
+        return indices.reduce((sum, index) => sum + values[index], 0) / indices.length;
+    }
+
+    private computeStumpLoss(
+        residuals: number[],
+        featureValues: number[],
+        threshold: number,
+        leftValue: number,
+        rightValue: number
+    ): number {
+        return residuals.reduce((sum, residual, index) => {
+            const prediction = featureValues[index] <= threshold ? leftValue : rightValue;
+            const error = residual - prediction;
+            return sum + error * error;
+        }, 0);
     }
 }

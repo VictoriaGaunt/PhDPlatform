@@ -10,6 +10,7 @@ import routes from './routes';
 import { errorHandler } from './middleware/error.middleware';
 import { loggerMiddleware } from './middleware/logger.middleware';
 import { authMiddleware } from './middleware/auth.middleware';
+import { ReadinessController } from './controllers/readiness.controller';
 
 const app = express();
 
@@ -42,6 +43,10 @@ app.use(authMiddleware);
 app.use('/uploads', express.static('uploads'));
 
 app.get('/health', (_req, res) => {
+    res.redirect('/health/live');
+});
+
+app.get('/health', (_req, res) => {
     res.status(200).json({
         status: 'OK',
         timestamp: new Date().toISOString(),
@@ -49,6 +54,8 @@ app.get('/health', (_req, res) => {
         environment: environment.NODE_ENV
     });
 });
+
+app.get('/health/ready', ReadinessController.ready);
 
 app.use('/api/v1', routes);
 

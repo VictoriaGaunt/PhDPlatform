@@ -11,13 +11,13 @@ export interface IPrediction extends Document {
         mae?: number;
         mape?: number;
     };
-    parameters?: any;
+    parameters?: Record<string, unknown>;
     createdBy?: mongoose.Types.ObjectId;
 }
 
 const PredictionSchema = new Schema<IPrediction>({
     regionCode: { type: String, required: true, index: true },
-    modelName: { type: String, required: true },
+    modelName: { type: String, required: true, index: true },
     horizon: { type: Number, required: true },
     generatedAt: { type: Date, default: Date.now },
     predictions: [{
@@ -35,5 +35,6 @@ const PredictionSchema = new Schema<IPrediction>({
     createdBy: { type: Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 PredictionSchema.index({ regionCode: 1, generatedAt: -1 });
-
+PredictionSchema.index({ modelName: 1, generatedAt: -1 });
+PredictionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 180 });
 export const Prediction = mongoose.model<IPrediction>('Prediction', PredictionSchema);

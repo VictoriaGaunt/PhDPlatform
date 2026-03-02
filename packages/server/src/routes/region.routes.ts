@@ -6,6 +6,8 @@ import { adminMiddleware } from '../middleware/admin.middleware';
 const router = Router();
 
 router.get('/', RegionController.getAll);
+router.post('/import-geojson', authMiddleware, adminMiddleware, RegionController.importGeoJSON);
+router.get('/import-geojson/tasks/:jobId', authMiddleware, adminMiddleware, RegionController.getImportTask);
 router.get('/:code', RegionController.getByCode);
 router.post('/', authMiddleware, adminMiddleware, RegionController.create);
 router.put('/:code', authMiddleware, adminMiddleware, RegionController.update);

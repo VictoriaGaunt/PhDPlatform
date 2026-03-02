@@ -1,28 +1,40 @@
-// Простая модель временных рядов (например, экспоненциальное сглаживание)
 export class TimeSeriesModel {
-    async predict(features: any[], horizon: number): Promise<any[]> {
-        const predictions = [];
-        // Извлекаем исторические значения HCI
-        const historical = features.map((f: any) => f.target).filter((v: number) => v != null);
+    async predict(features: Array<{ year: number; target?: number }>, horizon: number): Promise<Array<{ year: number; value: number }>> {
+        const historical = features
+            .map((item) => item.target)
+            .filter((value): value is number => typeof value === 'number' && Number.isFinite(value));
         if (historical.length === 0) {
             throw new Error('No historical data for time series');
         }
-        // Простое скользящее среднее последних 3 значений
-        const lastValues = historical.slice(-3);
-        const avg = lastValues.reduce((a, b) => a + b, 0) / lastValues.length;
-        const lastYear = features.length > 0 ? features[features.length - 1].year : new Date().getFullYear();
-        for (let i = 1; i <= horizon; i++) {
-            // Добавляем небольшой случайный шум
-            const value = avg + (Math.random() * 0.02 - 0.01);
-            predictions.push({
-                year: lastYear + i,
-                value: Math.min(1, Math.max(0, value))
-            });
+
+        const alpha = 0.5;
+        let level = historical[0];
+        for (let i = 1; i < historical.length; i++) {
+            level = alpha * historical[i] + (1 - alpha) * level;
         }
-        return predictions;
+
+        const trend = this.estimateTrend(historical);
+        const lastYear = features.length > 0 ? features[features.length - 1].year : new Date().getFullYear();
+        return Array.from({ length: horizon }, (_, index) => {
+            const step = index + 1;
+            const value = level + trend * step;
+            return {
+                year: lastYear + step,
+                value: Math.min(1, Math.max(0, value))
+            };
+        });
     }
 
     getModelEquation(): string {
-        return `ARIMA(1,1,1) модель для временного ряда HCI`;
+        return 'Exponential Smoothing + Linear Trend';
+    }
+    private estimateTrend(series: number[]): number {
+        if (series.length < 2) return 0;
+
+        let totalDelta = 0;
+        for (let i = 1; i < series.length; i++) {
+            totalDelta += series[i] - series[i - 1];
+        }
+        return totalDelta / (series.length - 1);
     }
 }

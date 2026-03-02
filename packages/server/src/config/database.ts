@@ -3,29 +3,20 @@ import logger from './logger';
 import environment from './environment';
 
 const connectDB = async (): Promise<void> => {
-    try {
-        const conn = await mongoose.connect(environment.MONGODB_URI, {
-            // Настройки соединения
-            serverSelectionTimeoutMS: 5000,
-            socketTimeoutMS: 45000,
-            maxPoolSize: 10,
-        });
-
-        logger.info(`✅ MongoDB подключена: ${conn.connection.host}`);
-
-        // Обработка ошибок после успешного подключения
-        mongoose.connection.on('error', (err) => {
-            logger.error(`❌ Ошибка MongoDB: ${err}`);
-        });
-
-        mongoose.connection.on('disconnected', () => {
-            logger.warn('⚠️ MongoDB отключена');
-        });
-
-    } catch (error) {
-        logger.error(`❌ Не удалось подключиться к MongoDB: ${error}`);
-        process.exit(1);
-    }
+    const conn = await mongoose.connect(environment.MONGODB_URI, {
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+        maxPoolSize: 10,
+        retryWrites: true,
+        retryReads: true,
+    });
+    logger.info(`✅ MongoDB подключена: ${conn.connection.host}`);
+    mongoose.connection.on('error', (err) => {
+        logger.error(`❌ Ошибка MongoDB: ${err}`);
+    });
+    mongoose.connection.on('disconnected', () => {
+        logger.warn('⚠️ MongoDB отключена');
+    });
 };
 
 export const disconnectDB = async (): Promise<void> => {

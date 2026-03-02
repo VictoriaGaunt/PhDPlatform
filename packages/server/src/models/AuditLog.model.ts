@@ -2,10 +2,10 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IAuditLog extends Document {
     userId: mongoose.Types.ObjectId;
-    action: 'CREATE' | 'UPDATE' | 'DELETE' | 'LOGIN' | 'LOGOUT';
+    action: string;
     targetCollection: string;
     documentId?: string;
-    changes?: any;
+    changes?: Record<string, unknown>;
     timestamp: Date;
     ip?: string;
     userAgent?: string;
@@ -13,7 +13,7 @@ export interface IAuditLog extends Document {
 
 const AuditLogSchema = new Schema<IAuditLog>({
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    action: { type: String, enum: ['CREATE', 'UPDATE', 'DELETE', 'LOGIN', 'LOGOUT'], required: true },
+    action: { type: String, required: true },
     targetCollection: { type: String, required: true },
     documentId: { type: String },
     changes: { type: Schema.Types.Mixed },
@@ -23,6 +23,7 @@ const AuditLogSchema = new Schema<IAuditLog>({
 }, { timestamps: true });
 
 AuditLogSchema.index({ userId: 1, timestamp: -1 });
-AuditLogSchema.index({ collection: 1, action: 1 });
+AuditLogSchema.index({ targetCollection: 1, action: 1 });
+AuditLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 365 });
 
 export const AuditLog = mongoose.model<IAuditLog>('AuditLog', AuditLogSchema);

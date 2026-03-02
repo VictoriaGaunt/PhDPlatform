@@ -1,36 +1,48 @@
 import { AuditLog, IAuditLog } from '../models/AuditLog.model';
+import mongoose from 'mongoose';
+
+interface AuditFilter {
+    userId?: string;
+    action?: string;
+    startDate?: Date;
+    endDate?: Date;
+}
 
 export class AuditService {
-    /**
-     * Логирует действие пользователя
-     */
     static async log(
         userId: string,
         action: string,
-        details?: any,
+        details?: Record<string, unknown>,
         ip?: string,
-        userAgent?: string
+        userAgent?: string,
+        targetCollection = 'system',
+        documentId?: string
     ): Promise<IAuditLog> {
+        const objectId = new mongoose.Types.ObjectId(userId);
         const log = new AuditLog({
-            userId,
+            userId: objectId,
             action,
-            details,
+            targetCollection,
+            documentId,
+            changes: details,
             ip,
             userAgent,
             timestamp: new Date()
         });
-        return await log.save();
+        return log.save();
     }
 
-    /**
-     * Получает логи с фильтрацией
-     */
     static async getLogs(
-        filter: { userId?: string; action?: string; startDate?: Date; endDate?: Date },
+        filter: AuditFilter,
         page = 1,
         limit = 50
     ): Promise<{ logs: IAuditLog[]; total: number }> {
-        const query: any = {};
+        const query: {
+            userId?: string;
+            action?: string;
+            timestamp?: { $gte?: Date; $lte?: Date };
+        } = {};
+
         if (filter.userId) query.userId = filter.userId;
         if (filter.action) query.action = filter.action;
         if (filter.startDate || filter.endDate) {
@@ -44,9 +56,10 @@ export class AuditService {
                 .sort({ timestamp: -1 })
                 .skip((page - 1) * limit)
                 .limit(limit)
-                .populate('userId', 'email name'),
+                .populate('userId', 'username role')
+                .lean(),
             AuditLog.countDocuments(query)
         ]);
-        return { logs, total };
+        return { logs: logs as unknown as IAuditLog[], total };
     }
 }
