@@ -34,6 +34,7 @@ const environment = {
     ADMIN_USERNAME: process.env.ADMIN_USERNAME,
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     ADMIN_LOGIN: process.env.ADMIN_USERNAME,
+    LOG_LEVEL: process.env.LOG_LEVEL,
 };
 
 export default environment;
