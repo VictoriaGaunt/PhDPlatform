@@ -42,21 +42,23 @@ export class RegionService {
         return result.deletedCount > 0;
     }
 
-    static async importFromGeoJSON(geojson: any): Promise<void> {
+    static async importFromGeoJSON(_geojson: any): Promise<void> {
         // Преобразовать GeoJSON features в документы регионов
         // ...
     }
 
     static async update(code: string, updateData: any) {
-        const updatedRegion = await Region.findOneAndUpdate(
-            { code },
-            { $set: updateData },
-            { new: true, runValidators: true }
-        );
-        return updatedRegion;
-    } catch (error) {
-        console.error('Error updating region:', error);
-        throw error;
+        try {
+            const updatedRegion = await Region.findOneAndUpdate(
+                { code },
+                { $set: updateData },
+                { new: true, runValidators: true }
+            );
+            return updatedRegion;
+        } catch (error) {
+            console.error('Error updating region:', error);
+            throw error;
+        }
     }
 
     static async count(filter = {}) {

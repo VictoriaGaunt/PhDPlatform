@@ -12,7 +12,7 @@ export class PredictionController {
         }
     }
 
-    static async getModels(req: Request, res: Response) {
+    static async getModels(_req: Request, res: Response) {
         res.json({
             success: true,
             data: [

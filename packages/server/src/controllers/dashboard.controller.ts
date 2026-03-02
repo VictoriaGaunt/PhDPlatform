@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
 
 export class DashboardController {
-    static async getSummary(req: Request, res: Response) {
+    static async getSummary(_req: Request, res: Response) {
         try {
             const { data: regions } = await RegionService.getAll({ limit: 1000 });
 

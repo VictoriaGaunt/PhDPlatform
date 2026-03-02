@@ -13,6 +13,6 @@ router.use('/predictions', predictionRoutes);
 router.use('/export', exportRoutes);
 router.use('/users', userRoutes);
 
-router.get('/test', (req, res) => res.json({ message: 'API is working' }));
+router.get('/test', (_req, res) => res.json({ message: 'API is working' }));
 
 export default router;

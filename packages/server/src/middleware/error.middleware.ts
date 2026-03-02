@@ -3,9 +3,9 @@ import environment from '../config/environment';
 
 export const errorHandler = (
     err: any,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ) => {
     console.error('❌ Ошибка:', err.stack || err.message || err);
 

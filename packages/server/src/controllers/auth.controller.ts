@@ -39,7 +39,7 @@ export class AuthController {
             },
         });
     }
-    static async logout(req: Request, res: Response) {
+    static async logout(_req: Request, res: Response) {
        res.json({ success: true, message: 'Выход выполнен' });
     }
 }

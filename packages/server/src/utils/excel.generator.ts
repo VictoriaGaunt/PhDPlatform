@@ -35,10 +35,10 @@ export async function generateRegionsExcel(regions: RegionType[]): Promise<Buffe
 /**
  * Генерация Excel с прогнозами
  */
-export async function generatePredictionsExcel(predictions: any[]): Promise<Buffer> {
+export async function generatePredictionsExcel(_predictions: any[]): Promise<Buffer> {
     // аналогично
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Прогнозы');
+    workbook.addWorksheet('Прогнозы');
     // ... логика
     const buffer = await workbook.xlsx.writeBuffer();
     return buffer as unknown as Buffer;

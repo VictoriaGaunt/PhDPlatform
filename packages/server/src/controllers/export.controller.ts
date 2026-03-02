@@ -3,7 +3,7 @@ import { ExportService } from '../services/export.service';
 import {PredictionService} from "../services/prediction.service";
 
 export class ExportController {
-    static async exportRegions(req: Request, res: Response) {
+    static async exportRegions(_req: Request, res: Response) {
         try {
             const buffer = await ExportService.exportRegionsToExcel();
             res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

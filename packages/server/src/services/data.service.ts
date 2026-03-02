@@ -3,9 +3,7 @@ import { Indicator } from '../models/Indicator.model';
 import { Dataset } from '../models/Dataset.model';
 import { Readable } from 'stream';
 import csv from 'csv-parser';
-import { AppError } from '../utils/errorHandler';
 import {Region} from "../models/Region.model";
-import { Multer } from 'multer';
 
 export class DataService {
     /**

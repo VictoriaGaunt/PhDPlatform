@@ -1,6 +1,6 @@
 import * as ExcelJS from 'exceljs';
 import { RegionService } from './region.service';
-import { PredictionService, ForecastResult } from './prediction.service';
+import { ForecastResult } from './prediction.service';
 //import { Readable } from 'stream';
 
 export class ExportService {
