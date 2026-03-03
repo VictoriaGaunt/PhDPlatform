@@ -1,9 +1,9 @@
-import request from 'supertest';
+import * as supertest from 'supertest';
 import app from '../../src/app';
 
 describe('Prediction validation', () => {
     it('returns 400 when horizon is out of bounds', async () => {
-        const response = await request(app)
+        const response = await supertest(app)
             .post('/api/v1/predictions/forecast')
             .send({ model: 'regression', horizon: 0, confidence: 0.9 });
 

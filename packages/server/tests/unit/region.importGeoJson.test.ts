@@ -1,4 +1,4 @@
-import { RegionService } from '../../src/services/region.service;
+import { RegionService } from '../../src/services/region.service';
 import { Region } from '../../src/models/Region.model';
 
 jest.mock('../../models/Region.model', () => ({
