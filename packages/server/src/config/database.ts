@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import logger from './logger';
 import environment from './environment';
+import dns from 'dns';
 
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 const connectDB = async (): Promise<void> => {
     const conn = await mongoose.connect(environment.MONGODB_URI, {
         serverSelectionTimeoutMS: 5000,

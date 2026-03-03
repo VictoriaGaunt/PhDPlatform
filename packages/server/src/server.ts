@@ -6,9 +6,11 @@ import connectDB, { disconnectDB } from './config/database';
 import { startTaskWorker, stopTaskWorker } from './workers/task.worker';
 import { closeTaskQueue } from './queues/task.queue';
 import { cacheService } from './services/cache.service';
+import dns from 'dns';
 
 const PORT = environment.PORT;
 const NODE_ENV = environment.NODE_ENV;
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const server = http.createServer(app);
 

@@ -7,22 +7,26 @@ class CacheService {
 
     constructor() {
         if (environment.REDIS_URL) {
-            this.client = new Redis(environment.REDIS_URL, {
-                lazyConnect: true,
-                maxRetriesPerRequest: 1,
-            });
-
-            this.client.connect().catch(() => {
-                this.isConnected = false;
-            });
-            this.client.on('connect', () => {
-                this.isConnected = true;
-                console.log('✅ Redis подключен');
-            });
-            this.client.on('error', (err) => {
-                console.error('❌ Redis error:', err);
-                this.isConnected = false;
-            });
+            try {
+                this.client = new Redis(environment.REDIS_URL, {
+                    lazyConnect: true,
+                    maxRetriesPerRequest: 1,
+                });
+                this.client.connect().catch(() => {
+                    this.isConnected = false;
+                });
+                this.client.on('connect', () => {
+                    this.isConnected = true;
+                    console.log('✅ Redis подключен');
+                });
+                this.client.on('error', (err) => {
+                    console.error('❌ Redis error:', err);
+                    this.isConnected = false;
+                });  // Log only once
+            } catch (err) {
+                console.warn('❌ Redis init fail:', err);
+                this.client = null;  // Fallback null
+            }
         } else {
             console.warn('⚠️ REDIS_URL не задан, кэширование отключено');
         }

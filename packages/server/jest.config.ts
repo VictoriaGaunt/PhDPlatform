@@ -7,7 +7,6 @@ const config: Config = {
     moduleFileExtensions: ['ts', 'js'],
     transform: { '^.+\\.ts$': 'ts-jest' },
     testMatch: ['**/*.test.ts'],
-    setupFilesAfterEnv: ['<rootDir>/tests/setup.ts']
 };
 
 export default config;
