@@ -1,7 +1,7 @@
 import { RegionService } from '../../src/services/region.service';
 import { Region } from '../../src/models/Region.model';
 
-jest.mock('../../models/Region.model', () => ({
+jest.mock('../../src/models/Region.model', () => ({
     Region: {
         findOneAndUpdate: jest.fn(),
         find: jest.fn(),
