@@ -22,7 +22,7 @@ class CacheService {
                 this.client.on('error', (err) => {
                     console.error('❌ Redis error:', err);
                     this.isConnected = false;
-                });  // Log only once
+                });
             } catch (err) {
                 console.warn('❌ Redis init fail:', err);
                 this.client = null;  // Fallback null
