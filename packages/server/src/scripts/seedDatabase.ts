@@ -4,15 +4,11 @@ import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
-// Импортируем модели
 import { Region } from '../models/Region.model';
 import { Indicator } from '../models/Indicator.model';
 import { User } from '../models/User.model';
 import { Prediction } from '../models/Prediction.model';
 
-/**
- * Очищает коллекции и заполняет начальными данными
- */
 const seedDatabase = async (): Promise<void> => {
     try {
         const mongoUri = process.env.MONGODB_URI;
@@ -20,7 +16,6 @@ const seedDatabase = async (): Promise<void> => {
         await mongoose.connect(mongoUri);
         console.log('✅ Подключено к MongoDB');
 
-        // Очищаем существующие данные
         console.log('🧹 Очистка коллекций...');
         await Region.deleteMany({});
         await Indicator.deleteMany({});
@@ -76,8 +71,10 @@ const seedDatabase = async (): Promise<void> => {
         console.log('🌱 Добавляем тестового пользователя-администратора...');
         const hashedPassword = await bcrypt.hash('admin123', 10);
         const adminUser = {
+            username: 'admin',
             email: 'admin@phd-platform.local',
             password: hashedPassword,
+            passwordHash: hashedPassword,
             firstName: 'Admin',
             lastName: 'User',
             role: 'admin',

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
 import { enqueueTask, getTaskStatus } from '../queues/task.queue';
+import { DataProvider } from '../services/dataProvider.service';
 
 export class RegionController {
     static async getAll(req: Request, res: Response) {
